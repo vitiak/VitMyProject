@@ -22,4 +22,13 @@ public class TrelloListDto {
     @JsonProperty("badges")
     private Badges badges;
 
+    @JsonProperty("board")
+    private int board;
+
+    @JsonProperty("card")
+    private int card;
+
+    @JsonProperty("votes")
+    private String votes;
+
 }

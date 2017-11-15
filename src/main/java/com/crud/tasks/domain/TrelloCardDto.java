@@ -10,4 +10,10 @@ public class TrelloCardDto {
     private String description;
     private String pos;
     private String listId;
+    private AttachmentsByType attachmentsByType;
+    private int votes;
+
+    Badges badges = new Badges(votes, attachmentsByType);
+    private int card = badges.getAttachments().getTrello().getCard();
+    private int board = badges.getAttachments().getTrello().getBoard();
 }
