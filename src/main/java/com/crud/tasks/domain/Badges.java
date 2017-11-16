@@ -7,5 +7,5 @@ import lombok.Getter;
 @Getter
 public class Badges {
     int votes;
-    AttachmentsByType attachments;
+    AttachmentsByType attachmentsByType;
 }
