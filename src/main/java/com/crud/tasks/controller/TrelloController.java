@@ -41,7 +41,7 @@ public class TrelloController {
 
             trelloBoardDto.getLists().forEach(trelloList ->
                     System.out.println(trelloList.getName() + " - " + trelloList.getId() + " - " + trelloList.isClosed()));
-
+            trelloBoardDto.getBadges();
         });
 
     }
