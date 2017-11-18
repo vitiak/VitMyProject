@@ -26,20 +26,6 @@ public class TrelloClient {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(TrelloClient.class);
 
-/*
-    @Value("${trello.api.endpoint.prod}")
-    private String trelloApiEndpoint;
-
-    @Value("${trello.app.key}")
-    private String trelloAppKey;
-
-    @Value("${trello.app.token}")
-    private String trelloToken;
-
-    @Value("${trello.app.userName}")
-    private String trelloUserName;
-*/
-
     @Autowired
     private TrelloConfig trelloConfig;
 
@@ -74,7 +60,8 @@ public class TrelloClient {
     }
 
     private URI getUri() {
-        return UriComponentsBuilder.fromHttpUrl(trelloConfig.getTrelloApiEndpoint() + "/members/"+trelloConfig.getTrelloUserName()+"/boards")
+        return UriComponentsBuilder.fromHttpUrl(trelloConfig.getTrelloApiEndpoint() + "/members/"
+                    +trelloConfig.getTrelloUserName()+"/boards")
                     .queryParam("key", trelloConfig.getTrelloAppKey())
                     .queryParam("token", trelloConfig.getTrelloToken())
                     .queryParam("fields", "name,id")
