@@ -19,7 +19,15 @@ public class TrelloListDto {
     @JsonProperty("closed")
     private boolean isClosed;
 
-    @JsonProperty("badges")
-    private Badges badges;
+    @JsonProperty("pos")
+    private long pos;
+
+    @JsonProperty("subscribed")
+    private boolean subscribed;
+
+    @JsonProperty("idBoard")
+    private String idBoard;
+
+
 
 }
