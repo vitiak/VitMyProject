@@ -2,6 +2,7 @@ package com.crud.tasks;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
 
 @SpringBootApplication/*(exclude = {ErrorMvcAutoConfiguration.class})*/
@@ -17,8 +18,8 @@ public class TasksApplication extends SpringBootServletInitializer {
 //		System.out.println(id + " " + title + " " + content);
 	}
 
-/*	@Override
+	@Override
 	protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {
 		return application.sources(TasksApplication.class);
-	}*/
+	}
 }
