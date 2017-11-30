@@ -7,7 +7,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import java.math.BigDecimal;
+
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
@@ -53,4 +56,17 @@ public class CalculatorTestSuite {
         LOGGER.info("Testing div method");
         assertEquals(3, result, 0);
     }
+
+    @Test
+    public void testFactorial() {
+        //Given
+        //When
+        BigDecimal result = calculator.factorial(new BigDecimal(1000));
+        //Then
+        LOGGER.info("Testing factorial method");
+        assertTrue(BigDecimal.ONE.compareTo(result) < 0);
+    }
+
+
+
 }

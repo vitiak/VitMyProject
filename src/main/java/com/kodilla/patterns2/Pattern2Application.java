@@ -1,0 +1,23 @@
+package com.kodilla.patterns2;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+@SpringBootApplication/*(exclude = {ErrorMvcAutoConfiguration.class})*/
+public class Pattern2Application /*extends SpringBootServletInitializer*/ {
+
+	public static void main(String[] args) {
+//		TaskDto taskDto = new TaskDto((long) 1,	"Test title","I want to be a coder"	);
+		SpringApplication.run(Pattern2Application.class, args);
+
+//		Long id = taskDto.getId();
+//		String title = taskDto.getTitle();
+//		String content = taskDto.getContent();
+//		System.out.println(id + " " + title + " " + content);
+	}
+
+/*	@Override
+	protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {
+		return application.sources(TasksApplication.class);
+	}*/
+}
