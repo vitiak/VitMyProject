@@ -19,6 +19,7 @@ public class TrelloListDto {
     @JsonProperty("closed")
     private boolean isClosed;
 
+/*
     @JsonProperty("pos")
     private long pos;
 
@@ -27,7 +28,5 @@ public class TrelloListDto {
 
     @JsonProperty("idBoard")
     private String idBoard;
-
-
-
+*/
 }
