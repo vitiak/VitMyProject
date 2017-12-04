@@ -33,13 +33,15 @@ public class TaskControllerTest {
     @MockBean
     private DbService service;
 
-    @MockBean
+    @Autowired
     private TaskMapper taskMapper;
 
 
     @Test
     public void shouldFetchListTasks() throws Exception {
         //Given
+//        TaskMapper taskMapper = new TaskMapper();
+
         List<Task> taskLists = new ArrayList<>();
         taskLists.add(new Task(1, "title1", "content1"));
         List<TaskDto> listTaskDto = taskMapper.mapToTaskDtoList(taskLists);
