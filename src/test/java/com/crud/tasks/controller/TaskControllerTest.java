@@ -4,6 +4,7 @@ import com.crud.tasks.domain.Task;
 import com.crud.tasks.domain.TaskDto;
 import com.crud.tasks.mapper.TaskMapper;
 import com.crud.tasks.service.DbService;
+import com.google.gson.Gson;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +21,7 @@ import static org.hamcrest.Matchers.hasSize;
 import static org.hamcrest.Matchers.is;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -35,6 +37,29 @@ public class TaskControllerTest {
 
     @Autowired
     private TaskMapper taskMapper;
+
+
+    @Test
+    public void shouldCreatedTasks() throws Exception {
+        //Given
+//        TaskMapper taskMapper = new TaskMapper();
+
+        Task task = new Task(2, "title2", "content2");
+        TaskDto taskDto = taskMapper.mapToTaskDto(task);
+
+        when(service.saveTask(task)).thenReturn(task);
+
+        Gson gson = new Gson();
+        String jsonContent = gson.toJson(task);
+
+        mockMvc.perform(post("/v1/task/createTask")
+                .contentType(MediaType.APPLICATION_JSON)
+                .characterEncoding("UTF-8")
+                .content(jsonContent))
+                .andExpect(jsonPath("$.id", is(2)))
+                .andExpect(jsonPath("$.title", is("title2")))
+                .andExpect(jsonPath("$.content", is("content2")));
+    }
 
 
     @Test
@@ -57,4 +82,6 @@ public class TaskControllerTest {
                 .andExpect( jsonPath("$[0].title", is("title1")))
                 .andExpect( jsonPath("$[0].content", is("content1")));
     }
+
+
 }
