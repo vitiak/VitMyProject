@@ -7,6 +7,7 @@ import com.crud.tasks.service.DbService;
 import com.google.gson.Gson;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.mockito.ArgumentMatchers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
@@ -35,7 +36,7 @@ public class TaskControllerTest {
     @MockBean
     private DbService service;
 
-    @Autowired
+    @MockBean
     private TaskMapper taskMapper;
 
 
@@ -47,7 +48,7 @@ public class TaskControllerTest {
         Task task = new Task(2, "title2", "content2");
         TaskDto taskDto = taskMapper.mapToTaskDto(task);
 
-        when(service.saveTask(task)).thenReturn(task);
+        when(service.saveTask(ArgumentMatchers.any(Task.class))).thenReturn(task);
 
         Gson gson = new Gson();
         String jsonContent = gson.toJson(task);
@@ -68,14 +69,20 @@ public class TaskControllerTest {
 //        TaskMapper taskMapper = new TaskMapper();
 
         List<Task> taskLists = new ArrayList<>();
+        List<TaskDto> taskDtoLists = new ArrayList<>();
         taskLists.add(new Task(1, "title1", "content1"));
+        taskLists.add(new Task(3, "title3", "content3"));
+        taskDtoLists.add(new TaskDto(1, "title1", "content1"));
         List<TaskDto> listTaskDto = taskMapper.mapToTaskDtoList(taskLists);
 
-        when(taskMapper.mapToTaskDtoList(service.getAllTasks())).thenReturn(listTaskDto);
+        when(service.getAllTasks()).thenReturn(taskLists);
+        when(taskMapper.mapToTaskDtoList(ArgumentMatchers.anyList())).thenReturn(taskDtoLists);
+
+//        when(taskMapper.mapToTaskDtoList(service.getAllTasks())).thenReturn(listTaskDto);
 
         //When & Then
 
-        mockMvc.perform(get("/v1/Task/getTasks").contentType(MediaType.APPLICATION_JSON))
+        mockMvc.perform(get("/v1/task/getTasks").contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andExpect( jsonPath("$", hasSize(1)))
                 .andExpect( jsonPath("$[0].id", is(1)))
