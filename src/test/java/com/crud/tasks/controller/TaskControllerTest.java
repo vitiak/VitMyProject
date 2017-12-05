@@ -4,7 +4,6 @@ import com.crud.tasks.domain.Task;
 import com.crud.tasks.domain.TaskDto;
 import com.crud.tasks.mapper.TaskMapper;
 import com.crud.tasks.service.DbService;
-import com.google.gson.Gson;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.ArgumentMatchers;
@@ -22,7 +21,6 @@ import static org.hamcrest.Matchers.hasSize;
 import static org.hamcrest.Matchers.is;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -40,12 +38,13 @@ public class TaskControllerTest {
     private TaskMapper taskMapper;
 
 
+/*
     @Test
-    public void shouldCreatedTasks() throws Exception {
+    public void shouldCreateTasks() throws Exception {
         //Given
 //        TaskMapper taskMapper = new TaskMapper();
 
-        Task task = new Task(2, "title2", "content2");
+        Task task = new Task(2L, "title2", "content2");
         TaskDto taskDto = taskMapper.mapToTaskDto(task);
 
         when(service.saveTask(ArgumentMatchers.any(Task.class))).thenReturn(task);
@@ -57,10 +56,12 @@ public class TaskControllerTest {
                 .contentType(MediaType.APPLICATION_JSON)
                 .characterEncoding("UTF-8")
                 .content(jsonContent))
+
                 .andExpect(jsonPath("$.id", is(2)))
                 .andExpect(jsonPath("$.title", is("title2")))
                 .andExpect(jsonPath("$.content", is("content2")));
     }
+*/
 
 
     @Test
@@ -70,9 +71,9 @@ public class TaskControllerTest {
 
         List<Task> taskLists = new ArrayList<>();
         List<TaskDto> taskDtoLists = new ArrayList<>();
-        taskLists.add(new Task(1, "title1", "content1"));
-        taskLists.add(new Task(3, "title3", "content3"));
-        taskDtoLists.add(new TaskDto(1, "title1", "content1"));
+        taskLists.add(new Task(1L, "title1", "content1"));
+        taskLists.add(new Task(3L, "title3", "content3"));
+        taskDtoLists.add(new TaskDto(1L, "title1", "content1"));
         List<TaskDto> listTaskDto = taskMapper.mapToTaskDtoList(taskLists);
 
         when(service.getAllTasks()).thenReturn(taskLists);
@@ -91,4 +92,29 @@ public class TaskControllerTest {
     }
 
 
+    @Test
+    public void shouldFetchTask() throws Exception {
+        //Given
+//        TaskMapper taskMapper = new TaskMapper();
+
+        Task task = new Task( 1L, "title1", "content1");
+        TaskDto taskDto = new TaskDto(1L, "title1", "content1");
+
+
+//        List<TaskDto> listTaskDto = taskMapper.mapToTaskDtoList(taskLists);
+
+        when(service.getTask((long) 1)).thenReturn(java.util.Optional.ofNullable(task));
+        when(taskMapper.mapToTaskDto(ArgumentMatchers.any())).thenReturn(taskDto);
+
+//        when(taskMapper.mapToTaskDtoList(service.getAllTasks())).thenReturn(listTaskDto);
+
+        //When & Then
+
+        mockMvc.perform(get("/v1/task/getTask?taskId=1").contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk())
+//                .andExpect( jsonPath("$", hasSize(1)))
+                .andExpect( jsonPath("$.id", is(1)))
+                .andExpect( jsonPath("$.title", is("title1")))
+                .andExpect( jsonPath("$.content", is("content1")));
+    }
 }

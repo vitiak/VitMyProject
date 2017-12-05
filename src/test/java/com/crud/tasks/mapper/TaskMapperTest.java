@@ -15,7 +15,7 @@ public class TaskMapperTest {
     @Test
     public void mapToTaskTest() throws URISyntaxException {
         TaskMapper taskMapper = new TaskMapper();
-        TaskDto taskDto = new TaskDto(1, "title1", "content1");
+        TaskDto taskDto = new TaskDto(1L, "title1", "content1");
         Task task = taskMapper.mapToTask(taskDto);
 
         assertEquals("content1", task.getContent());
@@ -26,7 +26,7 @@ public class TaskMapperTest {
     @Test
     public void mapToTaskDtoTest() throws URISyntaxException {
         TaskMapper taskMapper = new TaskMapper();
-        Task task = new Task(1, "title1", "content1");
+        Task task = new Task(1L, "title1", "content1");
         TaskDto taskDto = taskMapper.mapToTaskDto(task);
 
         assertEquals("content1", taskDto.getContent());
@@ -37,8 +37,8 @@ public class TaskMapperTest {
     @Test
     public void mapToTaskDtoListTest() throws URISyntaxException {
         TaskMapper taskMapper = new TaskMapper();
-        Task task1 = new Task(1, "title1", "content1");
-        Task task2 = new Task(2, "title2", "content2");
+        Task task1 = new Task(1L, "title1", "content1");
+        Task task2 = new Task(2L, "title2", "content2");
         List<Task> listTasks = new ArrayList<>();
         listTasks.add(task1);
         listTasks.add(task2);
