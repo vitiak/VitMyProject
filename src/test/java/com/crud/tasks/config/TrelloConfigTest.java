@@ -9,6 +9,7 @@ import static org.junit.Assert.assertNotNull;
 
 public class TrelloConfigTest {
 
+
     @Test
     public void mapToBoardsTest() throws URISyntaxException {
         //Given

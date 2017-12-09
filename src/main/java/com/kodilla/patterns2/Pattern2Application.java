@@ -1,10 +1,10 @@
 package com.kodilla.patterns2;
 
-import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
+/*
+@SpringBootApplication*/
+/*(exclude = {ErrorMvcAutoConfiguration.class})*//*
 
-@SpringBootApplication/*(exclude = {ErrorMvcAutoConfiguration.class})*/
-public class Pattern2Application /*extends SpringBootServletInitializer*/ {
+public class Pattern2Application extends SpringBootServletInitializer {
 
 	public static void main(String[] args) {
 //		TaskDto taskDto = new TaskDto((long) 1,	"Test title","I want to be a coder"	);
@@ -16,8 +16,9 @@ public class Pattern2Application /*extends SpringBootServletInitializer*/ {
 //		System.out.println(id + " " + title + " " + content);
 	}
 
-/*	@Override
+	@Override
 	protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {
-		return application.sources(TasksApplication.class);
-	}*/
+		return application.sources(Pattern2Application.class);
+	}
 }
+*/
