@@ -1,16 +1,7 @@
 package com.crud.tasks.mapper;
 
-import com.crud.tasks.domain.Task;
-import com.crud.tasks.domain.TaskDto;
-import org.junit.Test;
-
-import java.net.URISyntaxException;
-import java.util.ArrayList;
-import java.util.List;
-
-import static org.junit.Assert.assertEquals;
-
 public class TaskMapperTest {
+/*
 
     @Test
     public void mapToTaskTest() throws URISyntaxException {
@@ -50,6 +41,7 @@ public class TaskMapperTest {
         assertEquals(1, listTaskDtos.size());
     }
 
+*/
 
 
 }
