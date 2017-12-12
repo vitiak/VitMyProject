@@ -12,6 +12,7 @@ import java.util.Optional;
 public class DbService {
     @Autowired
     private TaskRepository repository;
+    String stringTestSmiec = "smiec";
 
     public List<Task> getAllTasks() {
         return repository.findAll();
