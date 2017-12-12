@@ -13,6 +13,7 @@ public class DbService {
     @Autowired
     private TaskRepository repository;
     double age = 10;
+    String stringTestSmiec = "smiec";
 
     public List<Task> getAllTasks() {
         return repository.findAll();
