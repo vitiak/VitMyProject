@@ -12,6 +12,7 @@ import java.util.Optional;
 public class DbService {
     @Autowired
     private TaskRepository repository;
+    double age = 10;
 
     public List<Task> getAllTasks() {
         return repository.findAll();
