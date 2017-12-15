@@ -12,6 +12,8 @@ import java.util.Optional;
 public class DbService {
     @Autowired
     private TaskRepository repository;
+    double age = 10;
+    String stringTestSmiec = "smiec";
 
     String mojaGazlaz = "mojaGsalaz";
 
