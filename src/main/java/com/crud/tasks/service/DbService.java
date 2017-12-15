@@ -13,6 +13,8 @@ public class DbService {
     @Autowired
     private TaskRepository repository;
 
+    String mojaGazlaz = "mojaGsalaz";
+
     public List<Task> getAllTasks() {
         return repository.findAll();
     }
