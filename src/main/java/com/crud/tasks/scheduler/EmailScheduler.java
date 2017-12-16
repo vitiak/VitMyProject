@@ -34,4 +34,18 @@ public class EmailScheduler {
                         adminConfig.getAdminMail())
                 );
     }
+
+    @Scheduled(cron = "0 0 23 * * *")
+    public void sendInformationEmailSzablon() {
+        long size = taskRepository.count();
+        String validWord = " tasks";
+        if (size == 1) {validWord = " task";}
+        simpleEmailService.send(new Mail(
+                adminConfig.getAdminMail(),
+                SUBJECT,
+                "Currently in database you got: " + size + validWord,
+                adminConfig.getAdminMail())
+        );
+    }
+
 }
